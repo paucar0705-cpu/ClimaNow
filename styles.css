@@ -1,1 +1,247 @@
-/* Los estilos de ClimaNow se implementarán en una etapa posterior. */
+:root {
+  color-scheme: light;
+  --color-fondo: #eef6ff;
+  --color-superficie: #ffffff;
+  --color-texto: #172033;
+  --color-texto-secundario: #526079;
+  --color-primario: #1769e0;
+  --color-primario-oscuro: #0d4fae;
+  --color-enfoque: #ffb000;
+  --color-borde: #cbd8e8;
+  --color-carga-fondo: #e8f2ff;
+  --color-carga-texto: #124f9c;
+  --color-error-fondo: #fff0f1;
+  --color-error-texto: #9d1824;
+  --color-error-borde: #e6a2a8;
+  --sombra: 0 16px 40px rgb(33 67 112 / 12%);
+  --radio: 1rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--color-texto);
+  background:
+    radial-gradient(circle at top, rgb(112 184 255 / 24%), transparent 30rem),
+    var(--color-fondo);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  line-height: 1.5;
+}
+
+header {
+  padding: 2.5rem 1.25rem 1.25rem;
+  text-align: center;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0;
+  color: var(--color-primario-oscuro);
+  font-size: clamp(2.25rem, 7vw, 3.75rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+h2 {
+  margin-bottom: 1.25rem;
+  font-size: clamp(1.15rem, 3vw, 1.5rem);
+  line-height: 1.25;
+}
+
+main {
+  width: min(100% - 2rem, 48rem);
+  margin: 0 auto;
+  padding-bottom: 3rem;
+}
+
+section {
+  margin-bottom: 1rem;
+  padding: clamp(1.25rem, 4vw, 2rem);
+  border: 1px solid rgb(203 216 232 / 80%);
+  border-radius: var(--radio);
+  background: var(--color-superficie);
+  box-shadow: var(--sombra);
+}
+
+form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.75rem;
+}
+
+label {
+  grid-column: 1 / -1;
+  color: var(--color-texto-secundario);
+  font-weight: 700;
+}
+
+input,
+button {
+  min-height: 3rem;
+  border-radius: 0.65rem;
+  font: inherit;
+}
+
+input {
+  width: 100%;
+  min-width: 0;
+  padding: 0.7rem 0.9rem;
+  border: 2px solid var(--color-borde);
+  color: var(--color-texto);
+  background: #ffffff;
+}
+
+input::placeholder {
+  color: #758198;
+  opacity: 1;
+}
+
+input:hover {
+  border-color: #8ca3c0;
+}
+
+button {
+  padding: 0.7rem 1.5rem;
+  border: 2px solid var(--color-primario);
+  color: #ffffff;
+  background: var(--color-primario);
+  font-weight: 750;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+button:hover {
+  border-color: var(--color-primario-oscuro);
+  background: var(--color-primario-oscuro);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+button:disabled {
+  border-color: #8793a5;
+  background: #8793a5;
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+input:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--color-enfoque);
+  outline-offset: 3px;
+}
+
+/* Estas regiones aparecerán cuando JavaScript les agregue un mensaje. */
+section:has(#estado-carga:empty),
+section:has(#mensaje-error:empty) {
+  display: none;
+}
+
+#estado-carga,
+#mensaje-error {
+  margin-bottom: 0;
+  padding: 0.9rem 1rem;
+  border-radius: 0.65rem;
+  font-weight: 650;
+}
+
+#estado-carga:not(:empty) {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-carga-texto);
+  background: var(--color-carga-fondo);
+}
+
+#estado-carga:not(:empty)::before {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+  border: 3px solid rgb(18 79 156 / 25%);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  content: "";
+  animation: girar 800ms linear infinite;
+}
+
+#resultados {
+  min-height: 10rem;
+  overflow-wrap: anywhere;
+}
+
+#resultados::after {
+  display: grid;
+  min-height: 5rem;
+  place-items: center;
+  color: var(--color-texto-secundario);
+  text-align: center;
+  content: "Los resultados aparecerán aquí.";
+}
+
+#resultados:has(> :not(h2))::after {
+  content: none;
+}
+
+#resultados:has(> :not(h2)) {
+  border-color: #8ab9f4;
+}
+
+#mensaje-error:not(:empty) {
+  border: 1px solid var(--color-error-borde);
+  color: var(--color-error-texto);
+  background: var(--color-error-fondo);
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@media (max-width: 36rem) {
+  header {
+    padding-top: 2rem;
+  }
+
+  main {
+    width: min(100% - 1.25rem, 48rem);
+  }
+
+  form {
+    grid-template-columns: 1fr;
+  }
+
+  label {
+    grid-column: auto;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
