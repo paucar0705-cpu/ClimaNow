@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+      name="description"
+      content="ClimaNow permite consultar el clima actual de una ciudad."
+    >
+    <title>ClimaNow</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>ClimaNow</h1>
+    </header>
+
+    <main>
+      <section aria-labelledby="titulo-busqueda">
+        <h2 id="titulo-busqueda">Consulta el clima de una ciudad</h2>
+
+        <form id="formulario-busqueda">
+          <label for="ciudad">Ciudad</label>
+          <input
+            id="ciudad"
+            name="ciudad"
+            type="search"
+            minlength="2"
+            autocomplete="address-level2"
+            placeholder="Ejemplo: Mérida"
+            required
+          >
+          <button type="submit">Buscar</button>
+        </form>
+      </section>
+
+      <section aria-labelledby="titulo-estado">
+        <h2 id="titulo-estado">Estado de la búsqueda</h2>
+        <p id="estado-carga" role="status" aria-live="polite"></p>
+      </section>
+
+      <section
+        id="resultados"
+        aria-labelledby="titulo-resultados"
+        aria-live="polite"
+      >
+        <h2 id="titulo-resultados">Resultados</h2>
+      </section>
+
+      <section aria-labelledby="titulo-errores">
+        <h2 id="titulo-errores">Mensajes</h2>
+        <p id="mensaje-error" role="alert" aria-live="assertive"></p>
+      </section>
+    </main>
+  </body>
+</html>
