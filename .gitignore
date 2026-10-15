@@ -1,0 +1,17 @@
+# Variables de entorno y secretos locales
+.env
+.env.*
+!.env.example
+
+# Configuración local de editores
+.vscode/
+.idea/
+*.code-workspace
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Registros locales
+*.log
